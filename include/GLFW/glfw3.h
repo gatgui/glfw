@@ -3292,16 +3292,15 @@ GLFWAPI void glfwSetInputMode(GLFWwindow* window, int mode, int value);
  */
 GLFWAPI const char* glfwGetKeyName(int key, int scancode);
 
-/*! @brief Returns the platform dependent scancode of the specified key.
+/*! @brief Returns the platform-specific scancode of the specified key.
  *
- *  This function returns the platform dependent scancode of the specified key.
- *  This is intended for platform specific default keybindings.
+ *  This function returns the platform-specific scancode of the specified key.
  *
  *  If the key is `GLFW_KEY_UNKNOWN` or does not exist on the keyboard this
  *  method will return `-1`.
  *
- *  @param[in] key The key to query.
- *  @return The platform dependent scancode for the key, or `-1` if an
+ *  @param[in] key Any [named key](@ref keys).
+ *  @return The platform-specific scancode for the key, or `-1` if an
  *  [error](@ref error_handling) occurred.
  *
  *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED, @ref
@@ -3309,7 +3308,7 @@ GLFWAPI const char* glfwGetKeyName(int key, int scancode);
  *
  *  @thread_safety This function may be called from any thread.
  *
- *  @sa @ref input_key_scancode
+ *  @sa @ref input_key
  *
  *  @since Added in version 3.3.
  *
