@@ -159,7 +159,8 @@ void _glfwPollMonitorsWin32(void)
                 for (i = 0;  i < disconnectedCount;  i++)
                 {
                     if (disconnected[i] &&
-                        wcscmp(monitor->win32.displayName, display.DeviceName) == 0)
+                        wcscmp(disconnected[i]->win32.displayName,
+                               display.DeviceName) == 0)
                     {
                         disconnected[i] = NULL;
                         break;
@@ -180,7 +181,8 @@ void _glfwPollMonitorsWin32(void)
             for (i = 0;  i < disconnectedCount;  i++)
             {
                 if (disconnected[i] &&
-                    wcscmp(monitor->win32.adapterName, adapter.DeviceName) == 0)
+                    wcscmp(disconnected[i]->win32.adapterName,
+                           adapter.DeviceName) == 0)
                 {
                     disconnected[i] = NULL;
                     break;
