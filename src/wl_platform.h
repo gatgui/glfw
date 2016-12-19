@@ -147,7 +147,7 @@ typedef struct _GLFWlibraryWayland
 typedef struct _GLFWmonitorWayland
 {
     struct wl_output*           output;
-    GLFWvidmode                 currentMode;
+    int                         currentMode;
 
     int                         x;
     int                         y;

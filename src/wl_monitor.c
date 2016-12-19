@@ -78,7 +78,7 @@ static void mode(void* data,
     monitor->modes[monitor->modeCount - 1] = mode;
 
     if (flags & WL_OUTPUT_MODE_CURRENT)
-        monitor->wl.currentMode = mode;
+        monitor->wl.currentMode = monitor->modeCount - 1;
 }
 
 static void done(void* data, struct wl_output* output)
@@ -160,7 +160,7 @@ GLFWvidmode* _glfwPlatformGetVideoModes(_GLFWmonitor* monitor, int* found)
 
 void _glfwPlatformGetVideoMode(_GLFWmonitor* monitor, GLFWvidmode* mode)
 {
-    *mode = monitor->wl.currentMode;
+    *mode = monitor->modes[monitor->wl.currentMode];
 }
 
 void _glfwPlatformGetGammaRamp(_GLFWmonitor* monitor, GLFWgammaramp* ramp)
