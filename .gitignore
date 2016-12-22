@@ -82,3 +82,11 @@ tests/title
 tests/vulkan
 tests/windows
 
+# SCons output files
+excons.cache
+*.dblite
+/.build
+/release
+/debug
+
+
