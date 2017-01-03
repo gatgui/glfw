@@ -100,8 +100,6 @@ tgts = excons.DeclareTargets(env, prjs)
 env.Depends("glfw3", InstallHeaders)
 env.Depends("glfw3_s", InstallHeaders)
 
-Default(["glfw3_s"])
-
 def RequireGLFW(static=True):
    def _RealRequire(env):
       if not static:
