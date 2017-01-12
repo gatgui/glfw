@@ -120,7 +120,7 @@ def RequireGLFW(static=True):
                                   "-framework", "CoreFoundation",
                                   "-framework", "CoreVideo"])
          elif sys.platform != "win32":
-            libs.extend(["X11", "Xcursor", "Xrandr", "Xinerama"])
+            libs.extend(["X11", "Xcursor", "Xrandr", "Xinerama", "dl"])
 
          env.Append(LIBS=libs)
 
