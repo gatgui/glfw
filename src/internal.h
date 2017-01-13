@@ -37,6 +37,8 @@
     defined(GLFW_INCLUDE_ES1)       || \
     defined(GLFW_INCLUDE_ES2)       || \
     defined(GLFW_INCLUDE_ES3)       || \
+    defined(GLFW_INCLUDE_ES31)      || \
+    defined(GLFW_INCLUDE_ES32)      || \
     defined(GLFW_INCLUDE_NONE)      || \
     defined(GLFW_INCLUDE_GLEXT)     || \
     defined(GLFW_INCLUDE_GLU)       || \
@@ -47,6 +49,9 @@
 
 #define GLFW_INCLUDE_NONE
 #include "../include/GLFW/glfw3.h"
+
+#define _GLFW_INSERT_FIRST      0
+#define _GLFW_INSERT_LAST       1
 
 typedef int GLFWbool;
 
@@ -266,6 +271,7 @@ struct _GLFWwndconfig
     GLFWbool      maximized;
     struct {
         GLFWbool  retina;
+        GLFWbool  frame;
     } ns;
 };
 
@@ -561,21 +567,6 @@ const char* _glfwPlatformGetKeyName(int key, int scancode);
  *  @ingroup platform
  */
 int _glfwPlatformGetKeyScancode(int key);
-
-/*! @copydoc glfwGetMonitors
- *  @ingroup platform
- */
-_GLFWmonitor** _glfwPlatformGetMonitors(int* count);
-
-/*! @brief Checks whether two monitor objects represent the same monitor.
- *
- *  @param[in] first The first monitor.
- *  @param[in] second The second monitor.
- *  @return @c GLFW_TRUE if the monitor objects represent the same monitor, or
- *  @c GLFW_FALSE otherwise.
- *  @ingroup platform
- */
-GLFWbool _glfwPlatformIsSameMonitor(_GLFWmonitor* first, _GLFWmonitor* second);
 
 /*! @copydoc glfwGetMonitorPos
  *  @ingroup platform
@@ -958,11 +949,11 @@ void _glfwInputCursorEnter(_GLFWwindow* window, GLFWbool entered);
 
 /*! @ingroup event
  */
-void _glfwInputMonitorChange(void);
+void _glfwInputMonitor(_GLFWmonitor* monitor, int action, int placement);
 
 /*! @ingroup event
  */
-void _glfwInputMonitorWindowChange(_GLFWmonitor* monitor, _GLFWwindow* window);
+void _glfwInputMonitorWindow(_GLFWmonitor* monitor, _GLFWwindow* window);
 
 /*! @brief Notifies shared code of an error.
  *  @param[in] error The error code most suitable for the error.
@@ -1073,10 +1064,6 @@ _GLFWmonitor* _glfwAllocMonitor(const char* name, int widthMM, int heightMM);
  *  @ingroup utility
   */
 void _glfwFreeMonitor(_GLFWmonitor* monitor);
-
-/*! @ingroup utility
-  */
-void _glfwFreeMonitors(_GLFWmonitor** monitors, int count);
 
 /*! @ingroup utility
  */
