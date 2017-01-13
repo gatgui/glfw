@@ -50,7 +50,8 @@ elif sys.platform == "darwin":
                 "src/cocoa_window.m",
                 "src/cocoa_time.c",
                 "src/posix_tls.c",
-                "src/nsgl_context.m"])
+                "src/nsgl_context.m",
+                "src/egl_context.c"])
   
    cust.append(AddFrameworks)
   
@@ -83,6 +84,7 @@ prjs = [
       "srcs": srcs
    },
    {  "name": ("glfw3" if sys.platform == "win32" else "glfw"),
+      "alias": "glfw3",
       "type": "sharedlib",
       "version": "3.3.0",
       "soname": "libglfw.so.3",
@@ -99,6 +101,16 @@ tgts = excons.DeclareTargets(env, prjs)
 
 env.Depends("glfw3", InstallHeaders)
 env.Depends("glfw3_s", InstallHeaders)
+
+Help("""SYNOPSYS
+  scons TARGETS* OPTIONS
+
+TARGETS
+  glfw3_s : Static library
+  glfw3   : Shared library
+
+%s
+""" % excons.GetOptionsString())
 
 def RequireGLFW(static=True):
    def _RealRequire(env):
