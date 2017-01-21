@@ -102,15 +102,16 @@ tgts = excons.DeclareTargets(env, prjs)
 env.Depends("glfw3", InstallHeaders)
 env.Depends("glfw3_s", InstallHeaders)
 
-Help("""SYNOPSYS
-  scons TARGETS* OPTIONS
+Help("""USAGE
+  scons [OPTIONS] TARGET*
 
-TARGETS
-  glfw3_s : Static library
+AVAILABLE TARGETS
+  glfw3_s : Static library 
   glfw3   : Shared library
 
-%s
-""" % excons.GetOptionsString())
+  Both are built by default.
+
+""" + excons.GetOptionsString())
 
 def RequireGLFW(static=True):
    def _RealRequire(env):
