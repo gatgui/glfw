@@ -79,6 +79,7 @@ InstallHeaders = env.Install("%s/include/GLFW" % excons.OutputBaseDirectory(), g
 prjs = [
    {  "name": "glfw3_s",
       "type": "staticlib",
+      "desc": "GLFW static library",
       "defs": defs,
       "incdirs": incs,
       "srcs": srcs
@@ -86,6 +87,7 @@ prjs = [
    {  "name": ("glfw3" if sys.platform == "win32" else "glfw"),
       "alias": "glfw3",
       "type": "sharedlib",
+      "desc": "GLFW shared library",
       "version": "3.3.0",
       "soname": "libglfw.so.3",
       "install_name": "libglfw.3.dylib",
@@ -101,17 +103,6 @@ tgts = excons.DeclareTargets(env, prjs)
 
 env.Depends("glfw3", InstallHeaders)
 env.Depends("glfw3_s", InstallHeaders)
-
-excons.SetHelp("""USAGE
-  scons [OPTIONS] TARGET*
-
-AVAILABLE TARGETS
-  glfw3_s : Static library 
-  glfw3   : Shared library
-
-  Both are built by default.
-
-""" + excons.GetOptionsString())
 
 def RequireGLFW(static=True):
    def _RealRequire(env):
