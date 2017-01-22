@@ -102,7 +102,7 @@ tgts = excons.DeclareTargets(env, prjs)
 env.Depends("glfw3", InstallHeaders)
 env.Depends("glfw3_s", InstallHeaders)
 
-Help("""USAGE
+excons.SetHelp("""USAGE
   scons [OPTIONS] TARGET*
 
 AVAILABLE TARGETS
